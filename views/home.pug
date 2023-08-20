@@ -1,0 +1,14 @@
+extends base
+
+block content
+    h1 Camera Capture and Upload
+    #camera-container
+      video#video(autoplay=true)
+      canvas#canvas(style='display:none;')
+      form#uploadForm(action='/upload', method='POST', enctype='multipart/form-data')
+        input(type='file', name='photo', accept='image/*', required)
+        button(type='submit') Upload Photo
+    //-   button#captureButton Capture Photo
+    //-   button#chooseButton Choose from File
+      
+    
