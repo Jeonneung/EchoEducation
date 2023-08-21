@@ -1,78 +1,60 @@
-import express from "express";
-import morgan from "morgan";
-import multer from "multer";
-
-const app = express();
+const express = require('express');
+const multer = require('multer');
 const path = require('path');
 
-// Routers
-const globalRouter = express.Router();
-const resultRouter = express.Router();
+// app 선언
+const app = express();
+const port = 3000;
 
-// Functions
-const prohibit = (req, res) => {
-    return res.send("Sorry, We can't find requested URL.");
-}
-const handleHome = (req, res) => {
-    return res.render("home", { pageTitle: 'Home' });
-}
-const postUpload = async(req, res) => {
-    const file = req.file;
-    const { photo } = req.body;
-    try {
-        await photo.create({
-            fileUrl: file.path,
-        });
-        return res.redirect("/result");
-    } catch (error) {
-        return res.status(400).render("home", {
-            pageTitle: "Home"
-        })
-    }
-}
+// ImagePath 변수 선언
+let uploadedImagePath = '';
+// let ImageResult = '';
+
+// view engine을 pug로 설정
+// Pug 템플릿 파일이 위치하는 디렉토리 설정
+app.set('view engine', 'pug');
+app.set('views', path.join(__dirname, 'views'));
+
+// 이미지 업로드를 위한 Multer 설정
 const storage = multer.diskStorage({
-    destination: function (req, file, cb) {
-        cb(null, 'uploads/');
-    },
-    filename: (req, file, cb) => {
-        global filename = file.fieldname + '-' + Date.now() + path.extname(file.originalname)
-        cb(null, filename);
+    // 파일/ 경로명 설정
+    // 앞의 public은 루트와 다름이 없다. 실제 이미지 접근 링크는 'localhost:3000/uploads/이미지명'이 되어야 한다.
+    destination: './public/uploads/',
+    filename: function (req, file, cb) {
+        cb(null, file.fieldname + '-' + Date.now() + path.extname(file.originalname));
     }
-})
-// middleware
-const upload = multer({
-    storage: storage,
-    limits: { 
-        fileSize: 10000000,
-    },
+});
+const upload = multer({ storage });
+
+// 정적 파일을 제공하기 위해 public 디렉토리 설정
+app.use(express.static(path.join(__dirname, 'public')));
+
+// 홈 페이지
+app.get('/', (req, res) => {
+    res.render('home');
 });
 
-// middleware
-// morgan: req 정보를 더 자세하게 알 수 있게 해줌.
-app.use(morgan("dev"));
+// 이미지 업로드 처리
+app.post('/upload', upload.single('photo'), (req, res) => {
+    console.log(req.file);
+    uploadedImagePath = req.file.path.replace('public', ''); // 업로드된 파일의 저장된 경로 가져옴
+    // 이미지 경로를 세션에 저장하거나 데이터베이스에 저장 가능
+    // 모델에 이미지 프로세싱 돌려서 결과 보고... 그러면 될듯
 
-// routes
-globalRouter
-    .route("/")
-    .get(handleHome)
-    .post(upload.single('photo'), postUpload);
+    res.redirect('/result');
+});
 
-globalRouter
-    .route("/upload")
-    .get(res.send("<img src='filename' alt='uploaded Image>"))
+// 이미지 보여주는 페이지
+app.get('/result', (req, res) => {
+    // 세션에서 이미지 경로를 가져오거나 데이터베이스에서 가져올 수 있음
+    res.render('result', { imagePath: uploadedImagePath });
+});
 
-// View Engie Settings
-app.set("view engine", "pug");
+const handleExcept = (req, res) => {
+    return res.send('Sorry, we can\'t find page.')
+}
+app.use(handleExcept);
 
-// Router Settings
-app.use("/", globalRouter);
-app.use("/result", resultRouter);
-
-// Handling Exception
-app.use(prohibit);
-
-// PORT Listening...
-const PORT = 4500;
-app.listen(PORT, () => {
-    console.log(`Server is running on port ${PORT}`);
+app.listen(port, () => {
+    console.log(`Server is running on port ${port}`);
 });
