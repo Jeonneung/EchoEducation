@@ -1,12 +1,20 @@
 extends base
 
 block content
-    h1 Result
+    h1#title Result
     .result-box
-    img(src=imagePath, alt='Uploaded Photo')
+        img(src=imagePath, alt='Uploaded Photo')
+        p 이 이미지의 페트병은 {} 입니다.
     .info-box
-    h2 Related Information
-    p This is some related information about the uploaded photo.
+        h2 Related Information
+        p This is some related information about the uploaded photo.
     .recommendation-box
-    h2 Recommendation
-    p Here is a recommendation for additional services.
+        #recommendation-content
+            h2 Recommendation
+            p Here is a recommendation for additional services.
+        #recommendation-content
+            h2 Recommendation
+            p Here is a recommendation for additional services.
+        #recommendation-content
+            h2 Recommendation
+            p Here is a recommendation for additional services.

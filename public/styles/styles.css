@@ -1,52 +1,121 @@
+/* home.pug */
+
 body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     height: 100vh;
-    /* background-image: url('background_img.png'); */
+}
+
+nav ul {
+    display: flex;
+    justify-content: center;
+}
+
+#content {
+    width: 1000px
+}
+
+li {
+    list-style: none;
+}
+
+li a img {
+    height: 60px;
+    width: 60px;
+}
+
+main {
+    display: flex;
+    /* //justify-content: center; */
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+#title {
+    display: block;
 }
 
 .container {
+    width: 80%;
+    background-color: white;
+    border-radius: 10px;
+    padding: 40px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.uploadForm {
+    margin: 20px;
+    width: 800px;
+    height: 130px;
+    display: flex;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+}
+/* submit 칸 */
+#uploadForm input[type='file'] {
+    display: block;
+    width: 800px;
+    height: 50px;
     background-color: white;
     border-radius: 10px;
     padding: 20px;
     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
     text-align: center;
 }
-
+/* Upload Photo 버튼 */
 button {
+    display: block;
+    width: 200px;
+    height: 50px;
     padding: 10px 20px;
+    margin: 30px 0 0 0; 
     background-color: white;
     color: black;
     border: 3px solid black;
     border-radius: 5px;
     cursor: pointer;
 }
-
 button:hover {
     background-color: #0056b3;
 }
-/* 이전의 스타일들을 유지한 채로 아래의 스타일을 추가합니다. */
+
+/* result.pug */
 
 .result-box {
+    padding: 50px 100px 50px 50px;
     margin-top: 20px;
     text-align: center;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.result-box p {
+    width: 50%;
+    height: 50px;
+    text-align: center;
+    font-size: 30px;
+    font-weight: 900;
 }
   
 .result-box img {
-    width: 30%;
-    height: 20%;
-    max-width: 100%;
-    max-height: 300px;
-    border: 1px solid #ddd;
+    width: 300px;
+    height: 200px;
     border-radius: 5px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-.info-box, .recommendation-box {
+.info-box {
     margin-top: 20px;
     padding: 20px;
     background-color: #f9f9f9;
@@ -54,6 +123,24 @@ button:hover {
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
+.recommendation-box {
+    margin-top: 20px;
+    padding: 20px;
+    background-color: white;
+    display: flex;
+    justify-content: space-around;
+}
+
 .info-box h2, .recommendation-box h2 {
+    width: 1000px;
     margin-bottom: 10px;
+}
+
+#recommendation-content {
+    width: 230px;
+    height: 200px;
+    padding: 10px;
+    margin: 5px;
+    background-color: #dcdcdc;
+    border-radius: 5px;
 }

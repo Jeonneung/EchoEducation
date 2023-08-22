@@ -1,15 +1,10 @@
 extends base
     
 block content
-    h1 Welcome to EchoEdu
+    h1#title Welcome to EchoEdu
     #container
       video#video(autoplay=true)
       canvas#canvas(style='display:none;')
       form#uploadForm(action='/upload', method='POST', enctype='multipart/form-data')
         input#photoInput(type='file', name='photo', accept='image/*', required)
-        button(type='submit') Upload Photo
-    //-   button#captureButton Capture Photo
-    //-   button#chooseButton Choose from File
-    //- /Users/buildingbite/Documents/GitHub/EchoEducation/public/photo-1692531005546.jpg
-      
-    
+        button(type='submit') 알고싶어요!
