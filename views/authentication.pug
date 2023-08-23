@@ -5,6 +5,6 @@ block content
     #container
       video#video(autoplay=true)
       canvas#canvas(style='display:none;')
-      form#uploadForm(action='/upload', method='POST', enctype='multipart/form-data')
+      form#uploadForm(action='/auth', method='POST', enctype='multipart/form-data')
         input#photoInput(type='file', name='photo', accept='image/*', required)
-        button(type='submit') 알고싶어요!
+        button(type='submit') 인증하기

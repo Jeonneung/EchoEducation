@@ -1,6 +1,7 @@
 /* home.pug */
 
 body {
+    background-color: #F3AA60;
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
@@ -9,6 +10,48 @@ body {
     justify-content: center;
     align-items: center;
     height: 100vh;
+    /* overflow: hidden; */
+}
+
+@keyframes slide-up {
+    0% {
+        opacity: 0;
+        transform: translateY(100%);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+#background-mountain {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 135%;
+    background-image: url('EchoEdu_BackGround_Mountain.png');
+    background-size: cover;
+    background-position: center;
+    animation: slide-up 1.5s ease-in-out;
+    z-index: -1; /* Place the background behind the content */
+}
+#background-tree {
+    position: fixed;
+    width: 100%;
+    height: 135%;
+    background-image: url('EchoEdu_BackGround_Tree.png');
+    background-size: cover;
+    background-position: center;
+    animation: slide-up 1s ease-in-out 0.8s; /* 1초 delay 후 1.5초동안 애니메이션 실행 */
+    animation-fill-mode: backwards;
+    z-index: -1; /* Place the background behind the content */
+}
+
+/* #background-tree {
+    animation: ;
+} */
+nav {
+    padding: 20px;
 }
 
 nav ul {
@@ -17,7 +60,8 @@ nav ul {
 }
 
 #content {
-    width: 1000px
+    width: 1000px;
+    z-index: 1;
 }
 
 li {
@@ -25,8 +69,10 @@ li {
 }
 
 li a img {
-    height: 60px;
-    width: 60px;
+    height: 150px;
+    width: 150px;
+    filter: invert(100%);
+    padding: 50px
 }
 
 main {
@@ -39,6 +85,9 @@ main {
 
 #title {
     display: block;
+    color: white;
+    font-size: 50px;
+    text-shadow: -3px 0 black, 0 3px black, 3px 0 black, 0 -3px black;
 }
 
 .container {
@@ -51,8 +100,20 @@ main {
     display: flex;
     justify-content: center;
     align-items: center;
+    animation: show-up 1.5s ease-in-out 2s;
+    animation-fill-mode: backwards;
 }
 
+@keyframes show-up {
+    0% {
+        opacity: 0;
+        transform: translateY(80%);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
 .uploadForm {
     margin: 20px;
     width: 800px;
@@ -70,35 +131,90 @@ main {
     background-color: white;
     border-radius: 10px;
     padding: 20px;
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    border: 4px solid black;
+    /* box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1); */
     text-align: center;
 }
 /* Upload Photo 버튼 */
 button {
     display: block;
-    width: 200px;
-    height: 50px;
+    width: 500px;
+    height: 70px;
     padding: 10px 20px;
-    margin: 30px 0 0 0; 
+    margin: 30px 150px 30px 150px; 
     background-color: white;
     color: black;
     border: 3px solid black;
     border-radius: 5px;
     cursor: pointer;
+    /* font */
+    font-weight: 700;
+    font-size: 30px;
 }
 button:hover {
-    background-color: #0056b3;
+    background-color: #EF6262;
 }
 
 /* result.pug */
 
+/* progress bar */
+#progress-container {
+    width: 100%;
+    background-color: #f0f0f0;
+    height: 30px;
+    position: relative;
+    border-radius: 5px;    
+}
+  
+#progress-bar {
+    width: 40%;
+    height: 100%;
+    border-radius: 5px;
+    background-color: #4caf50;
+    position: absolute;
+    animation-fill-mode: forwards;
+    animation: progressAnimation 2s ease-in-out;
+    text-align: right;
+    font-weight: 600;
+    padding: 0 20px 0 0; 
+}
+#progress-message {
+    position: absolute;
+    top: -40px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #333;
+    color: #fff;
+    padding: 5px 10px;
+    border-radius: 5px;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+
+  #progress-container:hover #progress-message {
+    opacity: 1;
+  }
+
+@keyframes progressAnimation {
+    0% { 
+        width: 30%; 
+    }
+    100% { 
+        width: 40%; 
+    }
+}
+
+/* result */
 .result-box {
-    padding: 50px 100px 50px 50px;
+    width: 90%;
+    padding: 40px 100px 40px 50px;
     margin-top: 20px;
     text-align: center;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    background-color: white;
+    border-radius: 5px;
 }
 .result-box p {
     width: 50%;
@@ -115,7 +231,9 @@ button:hover {
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
+/* info */
 .info-box {
+    width: 100%;
     margin-top: 20px;
     padding: 20px;
     background-color: #f9f9f9;
@@ -123,24 +241,52 @@ button:hover {
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
+/* recommendation */
 .recommendation-box {
+    width: 1050px;
     margin-top: 20px;
-    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: white;
+    border-radius: 5px;
+}
+#recommendation-title {
+    color: black;
+}
+#recommendation-content-wrap {
+    width: 90%;
+    padding: 10px;
+    margin-bottom: 10px;
     background-color: white;
     display: flex;
     justify-content: space-around;
+    border-radius: 5px;
 }
-
-.info-box h2, .recommendation-box h2 {
-    width: 1000px;
+/* #recommendation-content:hover {
+    animation: recommend-show-up ease-in-out 0.5s;
+} */
+.info-box h2, #recommendation-content-wrap h2 {
+    width: 90%;
     margin-bottom: 10px;
 }
 
 #recommendation-content {
-    width: 230px;
-    height: 200px;
+    height: 100px;
     padding: 10px;
-    margin: 5px;
+    margin: 5px 5px 20px 5px;
     background-color: #dcdcdc;
     border-radius: 5px;
 }
+/* @keyframes recommend-show-up {
+    0% {
+        position: relative;
+        border-radius: 50;
+        display: none;
+    }
+    100% {
+        position: absolute;
+        border-radius: 0;
+        display: block;
+    }
+} */

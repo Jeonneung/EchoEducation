@@ -8,6 +8,8 @@ html(lang="en")
         //- link(rel="stylesheet" href="https://unpkg.com/mvp.css@1.12/mvp.css")
         title=`${pageTitle} | EchoEdu`
     body 
+        #background-mountain
+        #background-tree
         #content
             header 
                 h1=pageTitle 
@@ -15,7 +17,7 @@ html(lang="en")
                 ul 
                     li
                         a(href="/")
-                            img(src="/styles/EchoEdu_Logo_pic.png")
+                            img(src="/styles/EchoEdu_Logo.png")
             main 
                 block content
             script(type = 'text/javascript' src = '/client.js')
