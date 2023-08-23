@@ -1,0 +1,135 @@
+body {
+    background-color: #F3AA60;
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100vh;
+    /* overflow: hidden; */
+}
+nav {
+    padding: 20px;
+}
+
+nav ul {
+    display: flex;
+    justify-content: center;
+}
+
+#content {
+    width: 1000px;
+    z-index: 1;
+}
+
+li {
+    list-style: none;
+}
+
+li a img {
+    height: 150px;
+    width: 150px;
+    filter: invert(100%);
+    animation: show-up 0.5s ease-in 1.5s;
+    animation-fill-mode: backwards;
+}
+
+
+
+@keyframes slide-up {
+    0% {
+        opacity: 0;
+        transform: translateY(100%);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+@keyframes show-up {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+#background-block {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 135%;
+    background-image: url('../background-block.png');
+    background-size: cover;
+    background-position: center;
+    animation: slide-up 1.5s ease-in-out;
+    z-index: -1; /* Place the background behind the content */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+#background-block> {
+    height: 25%;
+    width: 80%;
+    margin: 10px;
+}
+#back-descript {
+    animation: show-up 0.5s ease-in 1.5s;
+    animation-fill-mode: backwards;
+    color: white;
+    width: 80%;
+    margin: 10px;
+
+}
+#app-descript {
+    animation: show-up 0.5s ease-in 1.8s;
+    animation-fill-mode: backwards;
+    color: white;
+    width: 80%;
+    margin: 10px;
+
+}
+#how-to-descript {
+    animation: show-up 0.5s ease-in 2s;
+    animation-fill-mode: backwards;
+    color: white;
+    width: 80%;
+    margin: 10px;
+}
+
+#back-to-home a{
+    text-decoration-line: none;
+}
+button {
+    display: block;
+    width: 250px;
+    height: 60px;
+    padding: 10px 20px;
+    margin: 30px 150px 30px 150px; 
+    background-color: white;
+    color: black;
+    border: 3px solid black;
+    border-radius: 5px;
+    cursor: pointer;
+    /* font */
+    font-weight: 600;
+    font-size: 25px;
+    /* animation */
+    animation: show-up 0.5s ease-in 2.5s;
+    animation-fill-mode: backwards;
+
+}
+#back-to-home a button:hover {
+    background-color: #EF6262;
+}
+
+p {
+    text-align: center;
+    font-size: larger;
+}
+h2 {
+    text-align: center;
+}

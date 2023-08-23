@@ -2,22 +2,21 @@ extends base
 
 block content
     h1#title Result
-    #progress-container 
-        #progress-bar 40%
-        #progress-message 앞으로 리워드까지 6개!
     .result-box
         img(src=imagePath, alt='Uploaded Photo')
-        p 이 이미지의 페트병은 #{result} 입니다.
+        p 이 이미지에 있는 제품은 #{result} 입니다.
     .info-box
         h2 이 플라스틱은 뭔가요?
-        p This is some related information about the uploaded photo.
+        p=data.description
     .recommendation-box
         h2#recommendation-title 어떻게 처리하죠?
         #recommendation-content-wrap
             #recommendation-content
-                h2 처리 후 쓰레기통에!
+                h2 다음과 같은 차례로 처리하고 버려주세요: 
+                //- a(href='/authentication')
+                pre=data.process_beforeTrash
                 a(href='/authentication')
-                    p Here is a recommendation for additional services.
+                    button#goto-auth 버리고 인증하러 가기
             #recommendation-content
                 h2 Others
                 p Here is a recommendation for additional services.

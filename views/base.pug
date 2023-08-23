@@ -4,13 +4,18 @@ html(lang="en")
         meta(charset="UTF-8")
         meta(http-equiv="X-UA-Compatible", content="IE=edge")
         meta(name="viewport", content="width=device-width, initial-scale=1.0")
-        link(rel = 'stylesheet' href="/styles/styles.css")
+        link(rel = 'stylesheet' href="/styles/css/styles.css")
         //- link(rel="stylesheet" href="https://unpkg.com/mvp.css@1.12/mvp.css")
         title=`${pageTitle} | EchoEdu`
     body 
+        #background-bird
         #background-mountain
         #background-tree
         #content
+            #infoLogo
+                a(href='/info')
+                    img(src="/styles/information-button.png")
+                #logo-message 이 애플리케이션에 관하여
             header 
                 h1=pageTitle 
             nav 
