@@ -4,7 +4,10 @@ block content
     h1#title Result
     .result-box
         img(src=imagePath, alt='Uploaded Photo')
-        p 이 이미지에 있는 제품은 #{result} 입니다.
+        p 
+            | 이 이미지에 있는 제품은 
+            span#result #{result} 
+            | 입니다.
     .info-box
         h2 이 플라스틱은 뭔가요?
         p=data.description
