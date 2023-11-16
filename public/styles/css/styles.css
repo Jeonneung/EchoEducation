@@ -27,22 +27,29 @@ body {
 
 @keyframes rotateAnimation {
     0% {
-      transform: rotate(360deg);
+      transform: rotate(0deg) translateY(0);
+    }
+    50% {
+      transform: rotate(180deg) translateY(-30%);
     }
     100% {
-      transform: rotate(0deg);
+        transform: rotate(360deg) translateY(0);
     }
 }
+
 #background-bird {
     position: fixed;
-    top: 120px;
-    left: 130px;
-    width: 200px;
-    height: 200px;
+    top: 140px;
+    left: 430px;
+    width: 230px;
+    height: 230px;
     background-image: url('../background-bird.png');
-    animation: rotateAnimation 5s ease-in-out infinite;
-    animation-delay: 2s;
-    z-index: 1;
+    background-size: cover;
+    animation: rotateAnimation 4.5s infinite 1.5s,
+                show-up 1.5s ease-in-out backwards 2s;
+    transition-timing-function: cubic-bezier(0.970, -0.105, 0.740, 0.840);
+    /* animation-delay: 2s; */
+    z-index: -2;
 }
 #background-mountain {
     position: fixed;
@@ -52,7 +59,6 @@ body {
     height: 135%;
     background-image: url('../EchoEdu_BackGround_Mountain.png');
     background-size: cover;
-    background-position: center;
     animation: slide-up 1.5s ease-in-out;
     z-index: -1; /* Place the background behind the content */
 }
@@ -62,7 +68,6 @@ body {
     height: 135%;
     background-image: url('../EchoEdu_BackGround_Tree.png');
     background-size: cover;
-    background-position: center;
     animation: slide-up 1s ease-in-out 0.8s; /* 1초 delay 후 1.5초동안 애니메이션 실행 */
     animation-fill-mode: backwards;
     z-index: -1; /* Place the background behind the content */
@@ -102,8 +107,8 @@ li a img {
     right: 40px;
 }
 #infoLogo a img {
-    width: 30px;
-    height: 30px;
+    width: 35px;
+    height: 35px;
 }
 #logo-message {
     width: 162px;
@@ -341,20 +346,20 @@ button#goto-auth {
 button#goto-auth:hover {
     background-color: #EF6262;
 }
-/* @keyframes recommend-show-up {
-    0% {
-        position: relative;
-        border-radius: 50;
-        display: none;
-    }
-    100% {
-        position: absolute;
-        border-radius: 0;
-        display: block;
-    }
-} */
 
 /* auth.pug */
 #auth-result {
     color: white;
 }
+/* #websites {
+    position: fixed;
+    bottom: 40px;
+    right: 40px;
+}
+#website {
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    background-color: #EF6262;
+} */
